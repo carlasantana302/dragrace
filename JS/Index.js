@@ -12927,12 +12927,12 @@ function RankQueens(){
       case "LIFE":
       if(CurrentSeason.currentCast.length>=14)
       {
-        for(let i = 0; i<getRandomInt(3); i++)
+        for(let i = 0; i<getRandomInt(3,5); i++)
           {
             Tops.push(CurrentSeason.currentCast[i]);
           }
 
-          for(let i = 0; i<getRandomInt(3); i++)
+          for(let i = 0; i<getRandomInt(3,5); i++)
           {
             Bottoms.push(CurrentSeason.currentCast[CurrentSeason.currentCast.length-1-i]);
           }
@@ -13086,12 +13086,12 @@ function RankQueens(){
       case "LSFYL":
       if(CurrentSeason.currentCast.length>=14)
       {
-        for(let i = 0; i<getRandomInt(3); i++)
+        for(let i = 0; i<getRandomInt(3,5); i++)
           {
             Tops.push(CurrentSeason.currentCast[i]);
           }
 
-          for(let i = 0; i<getRandomInt(3); i++)
+          for(let i = 0; i<getRandomInt(3,5); i++)
           {
             Bottoms.push(CurrentSeason.currentCast[CurrentSeason.currentCast.length-1-i]);
           }
