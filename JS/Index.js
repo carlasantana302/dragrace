@@ -12924,143 +12924,51 @@ function RankQueens(){
     Safes = [];
     switch(CurrentSeason.lipsyncformat)
     {
-      case "LIFE":
-      if(CurrentSeason.currentCast.length>=14)
-      {
-        for(let i = 0; i<getRandomInt(3,5); i++)
-          {
-            Tops.push(CurrentSeason.currentCast[i]);
-          }
-
-          for(let i = 0; i<getRandomInt(3,5); i++)
-          {
-            Bottoms.push(CurrentSeason.currentCast[CurrentSeason.currentCast.length-1-i]);
-          }
-
-          if(CurrentSeason.immunity == true)
-          {
-            for(let i = 0; i<Bottoms.length; i++)
-            {
-              let getsafe = 1;
-              if(Bottoms[i].immune.indexOf(CurrentSeason.episodes.length)!=-1)
-              {
-                Bottoms.splice(i,1);
-                Bottoms.push(CurrentSeason.currentCast[ (CurrentSeason.currentCast.length-Bottoms.length-1)-getsafe ]);
-                getsafe++;
-              }
-            }
-          }
-      }
-      else
-      {
-        if(CurrentSeason.currentCast.length==7)
+        case "LIFE":
+        for(let i = 0; i < 3; i++)
         {
-            Tops.push(CurrentSeason.currentCast[0]);
-            Tops.push(CurrentSeason.currentCast[1]);
-            Tops.push(CurrentSeason.currentCast[2]);
-
-                Safes.push(CurrentSeason.currentCast[3]);
-                CurrentSeason.currentCast[3].trackrecord.push("SAFE");
-                CurrentSeason.currentCast[3].ppe += 3;
-                CurrentSeason.currentCast[3].safes++;
-
-            Bottoms.push(CurrentSeason.currentCast[4]);
-            Bottoms.push(CurrentSeason.currentCast[5]);
-            Bottoms.push(CurrentSeason.currentCast[6]);
-
+        Tops.push(CurrentSeason.currentCast[i]);
+        }
+        
+        
+        Copy code
+            for(let i = 0; i < 3; i++)
+            {
+              Bottoms.push(CurrentSeason.currentCast[CurrentSeason.currentCast.length-1-i]);
+            }
+        
             if(CurrentSeason.immunity == true)
             {
-              for(let i = 0; i<Bottoms.length; i++)
+              for(let i = 0; i<Bottoms.length; i++) 
               {
                 let getsafe = 1;
                 if(Bottoms[i].immune.indexOf(CurrentSeason.episodes.length)!=-1)
                 {
-                  Safes.push(Bottoms[i]);
                   Bottoms.splice(i,1);
                   Bottoms.push(CurrentSeason.currentCast[ (CurrentSeason.currentCast.length-Bottoms.length-1)-getsafe ]);
                   getsafe++;
-                  Bottoms.push(CurrentSeason.currentCast[3]);
                 }
               }
             }
-        }
-        else if(CurrentSeason.currentCast.length==6)
-        {
-            Tops.push(CurrentSeason.currentCast[0]);
-            Tops.push(CurrentSeason.currentCast[1]);
-            Tops.push(CurrentSeason.currentCast[2]);
-            Bottoms.push(CurrentSeason.currentCast[3]);
-            Bottoms.push(CurrentSeason.currentCast[4]);
-            Bottoms.push(CurrentSeason.currentCast[5]);
-
-        }
-        else if(CurrentSeason.currentCast.length==5)
-        {
-            Tops.push(CurrentSeason.currentCast[0]);
-            Tops.push(CurrentSeason.currentCast[1]);
-                Tops.push(CurrentSeason.currentCast[2]);
-            Bottoms.push(CurrentSeason.currentCast[3]);
-            Bottoms.push(CurrentSeason.currentCast[4]);
-        }
-        else if(CurrentSeason.currentCast.length==4)
-        {
-          Tops.push(CurrentSeason.currentCast[0]);
-
-              Tops.push(CurrentSeason.currentCast[1]);
-          Bottoms.push(CurrentSeason.currentCast[2]);
-          Bottoms.push(CurrentSeason.currentCast[3]);
-        }
-        else if(CurrentSeason.currentCast.length==3)
-        {
-          Tops.push(CurrentSeason.currentCast[0]);
-          Tops.push(CurrentSeason.currentCast[1]);
-          Tops.push(CurrentSeason.currentCast[2]);
-        }
-        else
-        {
-          for(let i = 0; i<getRandomInt(3,4); i++)
-          {
-            Tops.push(CurrentSeason.currentCast[i]);
-          }
-
-          for(let i = 0; i<getRandomInt(3,4); i++)
-          {
-              Bottoms.push(CurrentSeason.currentCast[CurrentSeason.currentCast.length-1-i]);
-          }
-
-          if(CurrentSeason.immunity == true)
-          {
-            for(let i = 0; i<Bottoms.length; i++)
+        
+            for(let i = 0; i<CurrentSeason.currentCast.length; i++)
             {
-              let getsafe = 1;
-              if(Bottoms[i].immune.indexOf(CurrentSeason.episodes.length)!=-1)
+              if((Tops.indexOf(CurrentSeason.currentCast[i]) == -1 && Bottoms.indexOf(CurrentSeason.currentCast[i]) == -1))
               {
-                Bottoms.splice(i,1);
-                Bottoms.push(CurrentSeason.currentCast[ (CurrentSeason.currentCast.length-Bottoms.length-1)-getsafe ]);
-                getsafe++;
+                if(Safes.indexOf(CurrentSeason.currentCast[i])==-1)
+                {
+                  CurrentSeason.currentCast[i].trackrecord.push("SAFE");
+                  CurrentSeason.currentCast[i].ppe += 3; 
+                  Safes.push(CurrentSeason.currentCast[i]);
+                  CurrentSeason.currentCast[i].safes++;
+                }
+              }
+              else
+              {
+                Critiqued.push(CurrentSeason.currentCast[i]);  
               }
             }
-          }
-        }
-      }
-      for(let i = 0; i<CurrentSeason.currentCast.length; i++)
-      {
-        if((Tops.indexOf(CurrentSeason.currentCast[i]) == -1 && Bottoms.indexOf(CurrentSeason.currentCast[i]) == -1))
-        {
-          if(Safes.indexOf(CurrentSeason.currentCast[i])==-1)
-          {
-            CurrentSeason.currentCast[i].trackrecord.push("SAFE");
-            CurrentSeason.currentCast[i].ppe += 3;
-            Safes.push(CurrentSeason.currentCast[i]);
-            CurrentSeason.currentCast[i].safes++;
-          }
-        }
-        else
-        {
-          Critiqued.push(CurrentSeason.currentCast[i]);
-        }
-      }
-      break;
+            break;
 
       case "AS7":
         if(CurrentSeason.currentCast.length>=10)
